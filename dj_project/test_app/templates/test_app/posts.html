@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Posts</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+
+    <div class="row">
+        <div class="col-4 offset-4">
+            <form method="post" class="form-group mt-3">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-dark">Send message</button>
+            </form>
+        </div>
+    </div>
+
+    {% if posts %}
+    <div class="row text-center">
+        {% for post in posts %}
+        <div class="col-4 offset-4">
+            <div class="border border-info rounded mb-3">
+                <p><b>Name:</b> {{ post.name }}</p>
+                <p><b>Message:</b> {{ post.message }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>
